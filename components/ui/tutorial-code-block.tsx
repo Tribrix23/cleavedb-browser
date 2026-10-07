@@ -12,11 +12,12 @@ const commandWords = new Set([
   "AND", "OR", "WHOSE", "IS", "ONLY", "UNIQUE", "TALLY", "TOTAL", "FIRST",
   "LAST", "HIGHEST", "LOWEST", "GROUPED", "BY", "ARRANGED", "GOING", "UP",
   "DOWN", "SORTED", "ORDER", "ASC", "DESC", "LIMIT", "MENTIONING", "MEANING",
-  "MATCHING", "INCLUDE", "CANDIDATE", "RELATED", "OF", "AS",
+  "MATCHING", "INCLUDE", "CANDIDATE", "RELATED", "OF", "AS", "IN", "PATTERN",
+  "LINKED", "VIA", "TO", "GUIDED", "THRESHOLD",
 ]);
 
 function highlightCleaveQL(source: string) {
-  const tokenPattern = /--[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+(?:\.\d+)?\b|[A-Za-z_][A-Za-z0-9_]*|[{}\[\],.:]/g;
+  const tokenPattern = /--[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+(?:\.\d+)?\b|[A-Za-z_][A-Za-z0-9_]*|[{}\[\],.:()]/g;
   const tokens: React.ReactNode[] = [];
   let cursor = 0;
   let match: RegExpExecArray | null;

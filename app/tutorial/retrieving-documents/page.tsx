@@ -8,82 +8,59 @@ export default function RetrievingDocumentsOverviewPage() {
       sectionTitle="Retrieving Documents (SCOOP) — Overview"
       previousHref="/tutorial/storing-documents"
       previousLabel="POUR overview"
+      nextHref="/tutorial/retrieving-documents/structured-retrieval"
+      nextLabel="Structured retrieval"
     >
       <p className="mb-6 leading-relaxed text-zinc-600">
-        Once a document has been written, the next question is what you need from it. CleaveDB answers with <code>SCOOP</code>, its command for retrieving documents and shaping results. The CleaveQL reference names <code>FIND</code> as the primary read verb and <code>SCOOP</code> as its alias, so both spellings perform the same read operation. This tutorial uses <code>SCOOP</code> in its examples so you can see the command named in this section in action.
+        <code>SCOOP</code> is CleaveQL’s structured read command: it retrieves documents from a bucket, applies conditions to their fields, and shapes the result for the application. Think of it as asking a well-organized archive a precise question. You choose the collection, describe what qualifies, then decide whether you need complete documents, a few selected fields, or a compact summary.
+      </p>
+
+      <p className="mb-6 leading-relaxed text-zinc-600">
+        The closest SQL comparison is <code>SELECT</code>. A SQL query selects rows from a table; a SCOOP query selects JSON documents from a bucket. The familiar ideas remain—filters, ordering, projections, limits, and summaries—but CleaveQL speaks in buckets and flexible documents. Documents in a bucket need not all have identical fields, so the query can focus on the fields that matter to the question at hand.
+      </p>
+
+      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Build a query from the question</h3>
+      <p className="mb-4 leading-relaxed text-zinc-600">
+        Begin with the bucket, such as <code>users</code> or <code>products</code>. Use <code>WHERE</code> for comparisons and combined conditions, <code>WHOSE</code> for a direct exact-field match, or <code>MATCHING</code> when the desired document should match a JSON shape. A request can be as broad as <code>SCOOP EVERYTHING FROM users</code>, or as focused as <code>SCOOP users WHERE age &gt; 21</code>. The command stays declarative: it describes the records you want rather than a step-by-step procedure for finding them.
       </p>
 
       <p className="mb-8 leading-relaxed text-zinc-600">
-        Think of a bucket as a shelf of documents. Sometimes you want the whole shelf; sometimes you want one familiar ID, a handful that meet a condition, the highest values, or only a few fields for a screen. SCOOP lets a query start broad and become more precise as you add the question’s details.
+        Once the matching documents are clear, decide what the caller needs back. <code>YIELD</code> selects fields, <code>ARRANGED BY</code> sorts the result, and <code>LIMIT</code> caps its size. These modifiers can be combined: a catalog can return the names and email addresses of users in a chosen order, or show only the first page of products that match a filter. The goal is a result shaped for its destination, not extra data the screen will immediately discard.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Start with the documents you need</h3>
-      <p className="mb-4 leading-relaxed text-zinc-600">
-        A query begins by identifying a bucket. <code>SCOOP users</code> asks for documents in <code>users</code>. Add an ID when you know exactly which document you want, as in <code>SCOOP users &quot;jane&quot;</code>. When you are looking for a group, narrow it with <code>WHERE</code> conditions—for example, select users whose age is greater than 20, or combine an age condition with a city using <code>AND</code> or <code>OR</code>. For a direct exact-field question, <code>WHOSE name IS &quot;Jane&quot;</code> reads naturally as “find the document whose name is Jane.”
-      </p>
-
+      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Use summaries when a list is not the answer</h3>
       <p className="mb-8 leading-relaxed text-zinc-600">
-        A useful retrieval usually needs more than a match. Sort the results with <code>ARRANGED BY</code> (or its documented sorting aliases), cap the number with <code>LIMIT</code>, and use <code>YIELD</code> or <code>SHOW</code> when the caller needs only selected fields. For instance, a product listing can find books, arrange them by price from highest to lowest, return the first five, and show just the title and price. The query then returns a deliberate view of the data instead of making the application sift through an unnecessarily large result.
+        SCOOP can answer common analytical questions directly. <code>THE TALLY</code> counts documents; <code>ONLY UNIQUE</code> finds distinct field values; <code>THE HIGHEST</code> and <code>THE LOWEST</code> rank documents by a field; <code>THE FIRST</code> and <code>THE LAST</code> return a chosen number from the result; and <code>THE TOTAL</code> with <code>GROUPED BY</code> can sum values by category. A dashboard that needs an employee count or revenue by region can request that answer without asking the application to collect every source document first.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Ask for an answer, not just a list</h3>
-      <p className="mb-4 leading-relaxed text-zinc-600">
-        SCOOP can summarize a bucket when a screen or workflow needs a quick answer. <code>THE TALLY</code> counts matching documents; <code>ONLY UNIQUE</code> returns distinct values for a field, such as the departments represented among employees. <code>THE HIGHEST</code> and <code>THE LOWEST</code> bring back the top or bottom records by a chosen field, while <code>THE FIRST</code> and <code>THE LAST</code> request a number of documents from either end. When a total is more useful than individual records, <code>THE TOTAL</code> can sum a field and <code>GROUPED BY</code> can organize that sum—for example, revenue by region.
-      </p>
-
+      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Keep structured search expressive</h3>
       <p className="mb-8 leading-relaxed text-zinc-600">
-        These forms turn common follow-up work into part of the query: counting users, finding the most expensive items, listing distinct categories, or totaling sales by region. You can still combine supported filters and result-shaping modifiers with a query, so the answer can be scoped to the same conditions as the records you would otherwise retrieve.
-      </p>
-
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Search by words, meaning, and connection</h3>
-      <p className="mb-4 leading-relaxed text-zinc-600">
-        Not every useful search begins with a known field value. <code>MENTIONING</code> looks for text containing a keyword or phrase, which helps when you know a word appears in a document but do not want to build a field-by-field filter. <code>MEANING</code> searches by semantic similarity: describe the idea you want in ordinary language, and CleaveDB uses its ONNX Transformer-based vector search to find documents with related meaning. This is useful when a person searching a catalog or knowledge base knows what they mean, but not the exact wording stored in the documents.
-      </p>
-
-      <p className="mb-4 leading-relaxed text-zinc-600">
-        Documents can also be retrieved through the relationships between them. A related-document query follows a named bond from a source document; a multi-hop query follows a chain, such as asking which people Jane’s manager knows. <code>CANDIDATE</code> includes dormant conditional bonds when you need to inspect possible relationships, and <code>AS OF</code> lets a query look at relationships as they existed at a past time. The returned related documents are de-duplicated by target document.
-      </p>
-
-      <p className="mb-8 leading-relaxed text-zinc-600">
-        There are two practical boundaries to remember: a multi-hop relationship chain is followed from the relationship nearest the bucket first, and documents moved to <code>_rubbish</code> by <code>DRAIN</code> are not returned by SCOOP. These details help explain why a graph query may return a different set than simply searching every document in a bucket.
+        A SCOOP query can also match a structured JSON template with <code>MATCHING</code>, nest another SCOOP inside a condition, or use the explicit <code>MEANING</code> modifier when semantic similarity needs to work alongside structured filters. <code>AS OF</code> asks for a historical view. Together, these options let an application build a query around its actual task while keeping the main shape readable: choose a bucket, state the criteria, and request the result in the form that will be useful.
       </p>
 
       <aside className="mb-8 rounded-lg border border-blue-100 bg-blue-50/70 p-5 leading-relaxed text-zinc-700">
-        <h3 className="mb-2 font-semibold text-zinc-900">SQL perspective</h3>
+        <h3 className="mb-2 font-semibold text-zinc-900">How CleaveDB works through a SCOOP request</h3>
         <p>
-          If you know SQL, CleaveQL’s <code>FIND</code> command (also written <code>SCOOP</code>) fills a role similar to <code>SELECT</code>: it reads data, while <code>WHERE</code> filters it. CleaveQL uses <code>ARRANGED BY</code> for sorting, <code>LIMIT</code> to cap results, and <code>YIELD</code> or <code>SHOW</code> to choose fields. The comparison is a starting point, not a one-to-one translation: SQL selects rows from tables, while CleaveQL retrieves flexible JSON documents from buckets and can follow document relationships directly. CleaveDB’s graph lookups, semantic search, and historical queries are part of that document-oriented workflow.
+          The query is parsed into a structured request. CleaveDB can use an available index for fields referenced by <code>WHERE</code> or <code>WHOSE</code>; if there is no applicable index, it evaluates the bucket’s documents. It then applies the requested filtering, ordering, and field projection. Selecting only the fields the caller needs keeps the returned payload focused, while indexes can make common filters more efficient.
         </p>
       </aside>
 
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Results follow CleaveDB’s data boundaries</h3>
       <p className="mb-8 leading-relaxed text-zinc-600">
-        A SCOOP query only returns documents the authenticated user is allowed to read. CleaveDB applies the bucket’s read rules, so a document hidden by a security policy will not appear in the result. Field masks can also remove protected fields from the JSON returned to the application. Documents are namespaced by tenant as well, keeping one tenant’s data within its own boundary even when another tenant uses the same bucket name. Retrieval therefore respects the same security and tenancy rules as the rest of the database.
-      </p>
-
-      <aside className="mb-8 rounded-lg border border-zinc-200 bg-zinc-50 p-5 leading-relaxed text-zinc-700">
-        <h3 className="mb-2 font-semibold text-zinc-900">A note on planned query forms</h3>
-        <p>
-          The README also lists <code>MATCHING</code> for JSON template matching and <code>WITH</code>/<code>INCLUDE</code> for eagerly retrieving related documents, but marks them as upcoming. They are not presented here as ready-to-run examples; check the current CleaveQL reference for their availability in the version you use.
-        </p>
-      </aside>
-
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Where SCOOP fits in the workflow</h3>
-      <p className="mb-4 leading-relaxed text-zinc-600">
-        <Link className="text-blue-700 hover:underline" href="/tutorial/storing-documents">POUR</Link> gives a document its home; <code>SCOOP</code> brings it back when the application needs it. From there, the result can be displayed, summarized, searched semantically, or used as the starting point for a relationship lookup. If the application later needs to edit selected fields, CleaveQL’s <code>CHANGE</code> command handles that next step. In practice, the query grows from the question: choose the bucket or source document, express what qualifies, then decide how much of the answer the caller needs.
+        Retrieval follows the same tenant and access boundaries as the rest of CleaveDB. The authenticated tenant scopes the bucket, read rules determine which documents are visible, and field masks can remove protected values from the returned JSON. A query describes what the application wants; CleaveDB still decides what that caller is permitted to receive.
       </p>
 
       <h3 className="mb-3 text-lg font-semibold text-zinc-900">Explore the SCOOP topics</h3>
       <p className="mb-4 leading-relaxed text-zinc-600">
-        Each lesson gives a different kind of question its own space, with CleaveQL examples and guidance on when that form is useful:
+        Each lesson focuses on one part of structured retrieval, with separate CleaveQL examples and guidance on when to use it:
       </p>
       <ul className="list-disc space-y-2 pl-6 leading-relaxed text-blue-700">
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/finding-documents">Finding documents: browse a bucket or fetch a document by its ID.</Link></li>
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/filtering-results">Filtering results: narrow a search with field conditions and exact matches.</Link></li>
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/shaping-results">Sorting and choosing fields: order results, cap their number, and return only useful fields.</Link></li>
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/summaries-and-totals">Summaries and totals: count, compare, find unique values, and add grouped totals.</Link></li>
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/text-and-meaning">Text and meaning search: look for words or search by semantic similarity.</Link></li>
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/related-documents">Related documents: follow a direct bond or a multi-step relationship chain.</Link></li>
-        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/historical-queries">History and candidate bonds: inspect past results and dormant conditional relationships.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/structured-retrieval">Structured retrieval: choose a bucket and fetch a document or collection.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/filtering-results">Filtering results: compare fields, combine conditions, and match JSON shapes.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/shaping-results">Sorting and choosing fields: order, limit, and project the returned documents.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/summaries-and-totals">Summaries and totals: count, rank, find unique values, and aggregate by category.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/nested-queries">Nested SCOOP queries: use one structured query inside another.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/meaning-search">Meaning search: add semantic matching to a structured query.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/retrieving-documents/historical-reads">Historical reads: query data as of an earlier point in time.</Link></li>
       </ul>
     </TutorialPageShell>
   );
