@@ -1,81 +1,55 @@
-import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { BookOpen, ArrowLeft, ArrowRight } from "lucide-react";
 
-import { TutorialSidebar } from "@/components/ui/tutorial-sidebar";
+import { TutorialPageShell } from "@/components/ui/tutorial-page-shell";
 
-const codeBlock = "rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-5 font-mono text-sm leading-7 text-zinc-200 overflow-x-auto whitespace-pre";
-
-function CodeBlock({ children, label = "CleaveQL" }: { children: React.ReactNode; label?: string }) {
+export default function StoringDocumentsOverviewPage() {
   return (
-    <div className="mb-8 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-sm">
-      <div className="border-b border-zinc-800 px-5 py-3 text-xs font-medium tracking-wide text-zinc-500">{label}</div>
-      <pre className={codeBlock}><code>{children}</code></pre>
-    </div>
-  );
-}
+    <TutorialPageShell
+      sectionTitle="Storing Documents (POUR) — Overview"
+      previousHref="/tutorial"
+      previousLabel="Introduction"
+      nextHref="/tutorial/storing-documents/creating-id"
+      nextLabel="Creating ID"
+    >
+      <p className="mb-6 leading-relaxed text-zinc-600">
+        <code>POUR</code> is CleaveDB’s command for creating and writing documents. If you are used to SQL, it fills a role similar to <code>INSERT</code>, but CleaveDB stores flexible JSON documents in named buckets rather than requiring every record to follow a fixed table schema. A POUR write places a document in a bucket and associates it with an ID.
+      </p>
 
-export default function StoringDocumentsPage() {
-  return (
-    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-blue-100">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <Image 
-              src="/logo-full.png" 
-              alt="CleaveDB Logo" 
-              width={480} 
-              height={120} 
-              className="w-[100px] h-auto object-contain" 
-            />
-          </Link>
-          <div className="flex items-center gap-4 text-sm font-medium text-zinc-600">
-            <Link href="/" className="hover:text-zinc-900 flex items-center gap-1 transition-colors">
-              <ArrowLeft className="w-4 h-4" /> 
-              Back to Home
-            </Link>
-          </div>
-        </div>
-      </header>
+      <aside className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-5 leading-relaxed text-zinc-700">
+        <h3 className="mb-1 font-semibold text-zinc-900">Buckets are created automatically</h3>
+        <p>If a POUR targets a bucket that does not exist yet, CleaveDB creates the bucket when it writes the document.</p>
+      </aside>
 
-      {/* Main Content Layout */}
-      <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-16 relative">
-        <TutorialSidebar />
+      <p className="mb-6 leading-relaxed text-zinc-600">
+        The JSON object holds a document’s fields. Documents in the same bucket can contain different fields, so you can store the attributes that make sense for each record without forcing every kind of data into one rigid shape. CleaveDB namespaces documents by the authenticated tenant, keeping users’ data isolated according to the database’s tenant rules. That means the same bucket name can be used by different tenants while CleaveDB applies the appropriate data boundaries.
+      </p>
 
-        <main className="flex-1 max-w-3xl pb-32">
-          <article>
-          <div className="mb-4 flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-blue-600">
-            <BookOpen className="h-4 w-4" /> Getting Started
-          </div>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-zinc-900">Tutorial: Building with CleaveDB</h1>
-          <section id="section-1" className="mb-12">
-            <h2 className="mb-4 text-2xl font-semibold tracking-tight text-zinc-900">1. Storing Documents (POUR)</h2>
-            <p className="mb-4 leading-relaxed text-zinc-600">
-              In CleaveDB, we insert data using the <code>POUR</code> command. Let's add a few users and products to our database. Notice how we namespace the data automatically.
-            </p>
-            <CodeBlock label="Insert Data">
-              <span className="text-zinc-500">-- Create users</span>{"\n"}
-              <span className="text-blue-400">POUR INTO</span> users <span className="text-emerald-300">"alice"</span> &#123;<span className="text-emerald-300">"name"</span>: <span className="text-emerald-300">"Alice Smith"</span>, <span className="text-emerald-300">"age"</span>: 28&#125;{"\n"}
-              <span className="text-blue-400">POUR INTO</span> users <span className="text-emerald-300">"bob"</span> &#123;<span className="text-emerald-300">"name"</span>: <span className="text-emerald-300">"Bob Jones"</span>, <span className="text-emerald-300">"age"</span>: 34&#125;{"\n\n"}
-              <span className="text-zinc-500">-- Create products</span>{"\n"}
-              <span className="text-blue-400">POUR INTO</span> products <span className="text-emerald-300">"laptop"</span> &#123;<span className="text-emerald-300">"title"</span>: <span className="text-emerald-300">"MacBook Pro"</span>, <span className="text-emerald-300">"price"</span>: 1999&#125;{"\n"}
-              <span className="text-blue-400">POUR INTO</span> products <span className="text-emerald-300">"mouse"</span> &#123;<span className="text-emerald-300">"title"</span>: <span className="text-emerald-300">"Wireless Mouse"</span>, <span className="text-emerald-300">"price"</span>: 49&#125;
-            </CodeBlock>
-          </section>
+      <p className="mb-6 leading-relaxed text-zinc-600">
+        A typical write follows a simple rhythm: choose where the document belongs, decide how it should be addressed, then provide its JSON data. From there, CleaveQL gives you several variations for the job at hand: create one document, let CleaveDB choose an ID, send a batch, set an expiry, register an account secret, or write into a nested field. Each variation is still part of the POUR family, so the shape of the data workflow stays familiar even when the details change.
+      </p>
 
-          <div className="flex flex-col gap-4 border-t border-zinc-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
-            <Link href="/tutorial" className="flex items-center gap-1 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-900">
-               <ArrowLeft className="h-4 w-4" /> Previous: Overview
-            </Link>
-            <Link href="/tutorial/relationships" className="flex items-center gap-1 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700">
-              Next: Creating Relationships <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </article>
-      </main>
-      </div>
-    </div>
+      <aside className="mb-8 rounded-lg border border-blue-100 bg-blue-50/70 p-5 leading-relaxed text-zinc-700">
+        <h3 className="mb-2 font-semibold text-zinc-900">SQL perspective</h3>
+        <p>
+          In traditional SQL, <code>INSERT INTO</code> adds a row to a table. In CleaveQL, <code>POUR INTO</code> writes a JSON document to a bucket and can assign an ID as part of that write. The concepts are related, but documents can have flexible fields, and CleaveDB represents relationships directly with commands such as <code>LINK</code>.
+        </p>
+      </aside>
+
+      <p className="mb-8 leading-relaxed text-zinc-600">
+        POUR is the start of the document’s journey, not the end of it. Use <code>FIND</code> to retrieve what you wrote, <code>CHANGE</code> to edit selected fields later, and <code>LINK</code> to connect that document to another one. The pages below walk through each POUR variation with examples, so you can pick the right one without memorizing the whole command reference first.
+      </p>
+
+      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Explore the POUR options</h3>
+      <p className="mb-4 leading-relaxed text-zinc-600">
+        Each option has its own page with details based on the CleaveQL command reference:
+      </p>
+      <ul className="list-disc space-y-2 pl-6 leading-relaxed text-blue-700">
+        <li><Link className="hover:underline" href="/tutorial/storing-documents/creating-id">Creating ID: use an explicit or generated ID, and name a bucket.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/storing-documents/bulk-writes">Bulk writes: create multiple documents with POUR MANY.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/storing-documents/expiring-documents">Expiring documents: set a time-to-live.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/storing-documents/login-secrets">Login secrets: create an account entry with WITH SECRET.</Link></li>
+        <li><Link className="hover:underline" href="/tutorial/storing-documents/nested-fields">Nested fields: write JSON into an existing document.</Link></li>
+      </ul>
+    </TutorialPageShell>
   );
 }

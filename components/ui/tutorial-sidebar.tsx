@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -8,14 +9,42 @@ type AccordionItem = {
   title: string;
   isOpen?: boolean;
   href: string;
+  sections?: { title: string; href: string }[];
 };
 
 export function TutorialSidebar() {
   const pathname = usePathname();
   
   const [items, setItems] = useState<AccordionItem[]>([
-    { title: "Introduction", isOpen: false, href: "/tutorial" },
-    { title: "Storing Documents (POUR)", isOpen: false, href: "/tutorial/storing-documents" },
+    { title: "Introduction", isOpen: false, href: "/tutorial", sections: [{ title: "Overview", href: "/tutorial" }] },
+    {
+      title: "Storing Documents (POUR)",
+      isOpen: false,
+      href: "/tutorial/storing-documents",
+      sections: [
+        { title: "Overview", href: "/tutorial/storing-documents" },
+        { title: "Creating ID", href: "/tutorial/storing-documents/creating-id" },
+        { title: "Bulk writes", href: "/tutorial/storing-documents/bulk-writes" },
+        { title: "Expiring documents", href: "/tutorial/storing-documents/expiring-documents" },
+        { title: "Login secrets", href: "/tutorial/storing-documents/login-secrets" },
+        { title: "Nested fields", href: "/tutorial/storing-documents/nested-fields" },
+      ],
+    },
+    {
+      title: "Retrieving Documents (SCOOP)",
+      isOpen: false,
+      href: "/tutorial/retrieving-documents",
+      sections: [
+        { title: "Overview", href: "/tutorial/retrieving-documents" },
+        { title: "Finding documents", href: "/tutorial/retrieving-documents/finding-documents" },
+        { title: "Filtering results", href: "/tutorial/retrieving-documents/filtering-results" },
+        { title: "Sorting and choosing fields", href: "/tutorial/retrieving-documents/shaping-results" },
+        { title: "Summaries and totals", href: "/tutorial/retrieving-documents/summaries-and-totals" },
+        { title: "Text and meaning search", href: "/tutorial/retrieving-documents/text-and-meaning" },
+        { title: "Related documents", href: "/tutorial/retrieving-documents/related-documents" },
+        { title: "History and candidate bonds", href: "/tutorial/retrieving-documents/historical-queries" },
+      ],
+    },
     { title: "Creating Relationships (LINK)", isOpen: false, href: "/tutorial/relationships" },
     { title: "Graph Traversal (FOLLOW)", isOpen: false, href: "/tutorial/graph-traversal" },
     { title: "AI Semantic Search (MEANING)", isOpen: false, href: "/tutorial/semantic-search" },
@@ -27,7 +56,9 @@ export function TutorialSidebar() {
     setItems((prev) =>
       prev.map((item) => ({
         ...item,
-        isOpen: item.href === pathname,
+        isOpen: item.href === "/tutorial"
+          ? pathname === item.href
+          : pathname === item.href || pathname.startsWith(`${item.href}/`),
       }))
     );
   }, [pathname]);
@@ -67,14 +98,20 @@ export function TutorialSidebar() {
               {item.isOpen && (
                 <div className="px-12 py-3 text-sm text-zinc-600 bg-zinc-50/50 border-t border-zinc-100">
                   <ul className="space-y-2">
-                    <li>
-                      <a 
-                        href={item.href} 
-                        className={`hover:text-blue-600 hover:underline ${isActive ? "text-blue-600 font-medium" : ""}`}
-                      >
-                        Overview
-                      </a>
-                    </li>
+                    {(item.sections ?? [{ title: "Overview", href: item.href }]).map((section) => {
+                      const sectionIsActive = section.href === pathname;
+
+                      return (
+                        <li key={section.href}>
+                          <Link
+                            href={section.href}
+                            className={`hover:text-blue-600 hover:underline ${sectionIsActive ? "text-blue-600 font-medium" : ""}`}
+                          >
+                            {section.title}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               )}
