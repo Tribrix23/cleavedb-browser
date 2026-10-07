@@ -12,15 +12,26 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes cell-ripple {
+  0% {
+    background-color: transparent;
+  }
+  30% {
+    background-color: var(--cell-fill-color, rgba(14,165,233,0.3));
+  }
+  60% {
+    background-color: transparent;
+  }
+}
+
+.animate-cell-ripple {
+  animation: cell-ripple var(--duration, 2s) ease-out var(--delay, 0ms) forwards;
 }
