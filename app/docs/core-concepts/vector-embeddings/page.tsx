@@ -33,6 +33,12 @@ export default function VectorEmbeddingsPage() {
         </div>
       </div>
 
+      <img 
+        src="/vd.png" 
+        alt="Vector Embeddings Architecture" 
+        className="w-full h-auto rounded-2xl border border-zinc-200/80 shadow-sm mb-4"
+      />
+
       <h2 className="text-2xl font-semibold text-zinc-900 mt-12 mb-6 tracking-tight">Semantic Querying (MEANING)</h2>
       <p className="text-lg text-zinc-600 mb-4 leading-relaxed">
         Retrieving semantically similar documents is as simple as using the <code>MEANING</code> keyword. CleaveQL allows you to specify a floating-point <code>THRESHOLD</code> to filter out low-confidence matches. Because the ONNX model is deeply integrated with the query parser, there is no need to join against an external vector index. 
@@ -63,8 +69,8 @@ export default function VectorEmbeddingsPage() {
         <Link href="/docs/core-concepts/graph-relations" className="text-sm font-medium text-zinc-500 hover:text-zinc-700 flex items-center gap-1 transition-colors">
           &larr; Graph Relations
         </Link>
-        <Link href="/docs/tutorial" className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors">
-          Next: Tutorial &rarr;
+        <Link href="/docs/core-concepts/security" className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors">
+          Next: Document Security (DLS) &rarr;
         </Link>
       </div>
     </>

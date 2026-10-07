@@ -63,6 +63,12 @@ export default function DocumentSecurityPage() {
         <strong>Important:</strong> tenant isolation is not a substitute for application-level authorization. Authenticate each connection with the intended user account and define policies for the additional access rules your application requires.
       </div>
 
+      <img 
+        src="/dls.png" 
+        alt="Document Level Security" 
+        className="w-full h-auto rounded-2xl border border-zinc-200/80 shadow-sm mb-12"
+      />
+
       <h2 className="mb-4 text-2xl font-semibold tracking-tight text-zinc-900">Policy controls</h2>
       <p className="mb-6 leading-relaxed text-zinc-600">
         Use <code className="rounded bg-zinc-100 px-1.5 py-0.5 text-sm text-zinc-800">ENFORCE SECURITY</code> for action authorization and <code className="rounded bg-zinc-100 px-1.5 py-0.5 text-sm text-zinc-800">SHAPE POLICY</code> for read filtering. Conditions can refer to the current user, role, document fields, or graph bonds.

@@ -19,6 +19,7 @@ export function DocsSidebar() {
         { name: "Introduction", href: "/docs" },
         { name: "Installation & Build", href: "/docs/installation" },
         { name: "Quick Start", href: "/docs/quick-start" },
+        { name: "Tutorial", href: "/tutorial" },
       ],
     },
     {

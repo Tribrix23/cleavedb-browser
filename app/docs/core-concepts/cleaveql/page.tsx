@@ -13,7 +13,7 @@ export default function CleaveQLSyntaxPage() {
       </p>
       
       <p className="text-zinc-600 mb-10 leading-relaxed">
-        For a comprehensive, step-by-step guide on writing your first queries, please see the <Link href="/docs/tutorial" className="text-blue-600 font-medium hover:underline">Tutorial</Link>.
+        For a comprehensive, step-by-step guide on writing your first queries, please see the <Link href="/tutorial" className="text-blue-600 font-medium hover:underline">Tutorial</Link>.
       </p>
 
       <div className="w-full h-px bg-zinc-100 my-10"></div>
