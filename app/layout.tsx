@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CleaveDB | Hybrid AI Database",
   description: "The polyglot, AVX-512 ready, hybrid relational-document graph database with Transformer attention layers.",
+  icons: {
+    icon: "/cleavedb.ico",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

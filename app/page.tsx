@@ -1,8 +1,10 @@
+import logoImg from "@/public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Instrument_Serif } from "next/font/google";
 import { ArrowDown, ArrowRight, ArrowUpRight, Box, Braces, Cpu, GitBranch, Layers3, Network, ScanSearch, ShieldCheck } from "lucide-react";
 import { LandingNav, DatabaseSculpture, QueryPlayground } from "@/components/landing/landing-interactions";
+import { CopyCommand } from "@/components/ui/copy-command";
 import styles from "./landing.module.css";
 
 const editorial = Instrument_Serif({ weight: "400", style: ["normal", "italic"], subsets: ["latin"], variable: "--font-editorial", display: "swap" });
@@ -34,6 +36,9 @@ export default function Home() {
               <Link className={styles.primaryButton} href="/docs/installation">Start building <ArrowRight size={18} aria-hidden="true" /></Link>
               <Link className={styles.textButton} href="/docs">Explore the docs <ArrowUpRight size={18} aria-hidden="true" /></Link>
             </div>
+            <div className="mt-6 sm:mt-8 mb-6 max-w-sm w-full">
+              <CopyCommand command="npm i cleavedb" />
+            </div>
             <a href="#product" className={styles.discoverLink}><ArrowDown size={14} aria-hidden="true" /> A little less complexity. A lot more possibility.</a>
           </div>
           <DatabaseSculpture />
@@ -62,7 +67,7 @@ export default function Home() {
               <div className={styles.engineDiagram} aria-label="CleaveDB connects a Rust storage engine, native graph bonds, and ONNX semantic search">
                 <div className={styles.diagramInputs}><span>Documents</span><span>Relationships</span><span>Meaning</span></div>
                 <div className={styles.diagramConnectors} aria-hidden="true"><i /><i /><i /></div>
-                <div className={styles.diagramCore}><Image src="/logo.png" alt="" width={40} height={40} /><strong>CleaveDB</strong><span>One connected engine</span></div>
+                <div className={styles.diagramCore}><Image src={logoImg} alt="" width={40} height={40} /><strong>CleaveDB</strong><span>One connected engine</span></div>
                 <div className={styles.diagramBase}><span>Rust</span><span>Graph bonds</span><span>ONNX</span></div>
               </div>
               <div className={styles.engineNote}><span aria-hidden="true" /> Built for the way your data actually connects.</div>
@@ -91,7 +96,7 @@ export default function Home() {
         </section>
       </main>
       <footer className={`${styles.footer} ${styles.container}`}>
-        <Link href="/" className={styles.brand} aria-label="CleaveDB home"><Image src="/logo.png" alt="" width={30} height={30} /><span>Cleave<span className={styles.brandLight}>DB</span></span></Link>
+        <Link href="/" className={styles.brand} aria-label="CleaveDB home"><Image src={logoImg} alt="" width={30} height={30} /><span>Cleave<span className={styles.brandLight}>DB</span></span></Link>
         <p>© {new Date().getFullYear()} CleaveDB. Built for possibility.</p>
         <nav aria-label="Footer"><Link href="/docs">Documentation</Link><Link href="/tutorial">Tutorials</Link><a href="https://github.com/Tribrix23/CleaveDB" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={13} aria-hidden="true" /></a></nav>
       </footer>

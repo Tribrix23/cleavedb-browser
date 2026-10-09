@@ -7,6 +7,8 @@ import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-moti
 import { ArrowRight, ArrowUpRight, Braces, Check, ChevronRight, Copy, FileJson, FileText, GitBranch, Menu, ScanSearch, UserRound, X } from "lucide-react";
 import styles from "@/app/landing.module.css";
 
+import logoImg from "@/public/logo.png";
+
 export function LandingNav() {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -14,7 +16,7 @@ export function LandingNav() {
   return (
     <header className={styles.header} onKeyDown={(event) => { if (event.key === "Escape" && open) { close(); toggleRef.current?.focus(); } }}>
       <div className={`${styles.navbar} ${styles.container}`}>
-        <Link href="/" className={styles.brand} aria-label="CleaveDB home"><Image src="/logo.png" alt="" width={34} height={34} preload /><span>Cleave<span className={styles.brandLight}>DB</span></span></Link>
+        <Link href="/" className={styles.brand} aria-label="CleaveDB home"><Image src={logoImg} alt="" width={34} height={34} /><span>Cleave<span className={styles.brandLight}>DB</span></span></Link>
         <nav id="landing-navigation" aria-label="Main navigation" className={`${styles.navLinks} ${open ? styles.navOpen : ""}`}>
           <a href="#product" onClick={close}>Product</a><a href="#developers" onClick={close}>Developers</a><Link href="/docs" onClick={close}>Documentation</Link><a href="https://github.com/Tribrix23/CleaveDB" target="_blank" rel="noopener noreferrer" onClick={close}>GitHub <ArrowUpRight size={13} aria-hidden="true" /></a>
         </nav>

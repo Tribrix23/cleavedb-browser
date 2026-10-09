@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { CopyCommand } from "@/components/ui/copy-command";
 
 export default function DocsQuickStartPage() {
   return (
@@ -15,6 +16,9 @@ export default function DocsQuickStartPage() {
         <p className="text-zinc-600 mb-6">
           The WebSocket protocol is ideal for long-lived, stateful connections and enables real-time Pub/Sub features like <code>LISTEN TO bucket</code>.
         </p>
+        <div className="mb-6 max-w-sm">
+          <CopyCommand command="npm i cleavedb" />
+        </div>
         <div className="bg-zinc-900 rounded-xl overflow-hidden shadow-inner border border-zinc-800">
           <div className="flex items-center gap-2 px-4 py-3 bg-zinc-950/50 border-b border-zinc-800">
             <span className="text-xs font-medium text-zinc-500 font-mono">index.js</span>
