@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BookOpen, ArrowLeft, ArrowRight } from "lucide-react";
 
 import { TutorialSidebar } from "@/components/ui/tutorial-sidebar";
+import logoFullImg from "@/public/logo-full.png";
 
 type TutorialPageShellProps = {
   sectionTitle: string;
@@ -28,7 +29,7 @@ export function TutorialPageShell({
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
             <Image
-              src="/logo-full.png"
+              src={logoFullImg}
               alt="CleaveDB Logo"
               width={480}
               height={120}

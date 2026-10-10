@@ -13,7 +13,7 @@ const commandWords = new Set([
   "LAST", "HIGHEST", "LOWEST", "GROUPED", "BY", "ARRANGED", "GOING", "UP",
   "DOWN", "SORTED", "ORDER", "ASC", "DESC", "LIMIT", "MENTIONING", "MEANING",
   "MATCHING", "INCLUDE", "CANDIDATE", "RELATED", "OF", "AS", "IN", "PATTERN",
-  "LINKED", "VIA", "TO", "GUIDED", "THRESHOLD",
+  "LINKED", "VIA", "TO", "GUIDED", "THRESHOLD", "SET",
 ]);
 
 function highlightCleaveQL(source: string) {

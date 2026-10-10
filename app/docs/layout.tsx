@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { DocsSidebar } from "@/components/ui/docs-sidebar";
+import logoFullImg from "@/public/logo-full.png";
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
             <Image 
-              src="/logo-full.png" 
+              src={logoFullImg} 
               alt="CleaveDB Logo" 
               width={480} 
               height={120} 

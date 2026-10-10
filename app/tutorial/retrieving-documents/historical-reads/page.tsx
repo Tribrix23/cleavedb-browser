@@ -7,6 +7,8 @@ export default function HistoricalScoopReadsPage() {
       sectionTitle="Historical Reads"
       previousHref="/tutorial/retrieving-documents/meaning-search"
       previousLabel="Meaning search"
+      nextHref="/tutorial/find"
+      nextLabel="Graph & Semantic Search (FIND)"
     >
       <p className="mb-6 leading-relaxed text-zinc-600">
         Sometimes the useful answer is not what a document says now, but what it said at an earlier point. SCOOP supports <code>AS OF</code> for a historical read, using a timestamp or a supported relative time such as <code>yesterday</code>. This lets an application inspect an earlier view while leaving the current document untouched.
