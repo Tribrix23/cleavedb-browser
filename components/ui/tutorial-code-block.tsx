@@ -20,6 +20,9 @@ const commandWords = new Set([
   "FOLLOW", "TRACE", "MATCH", "RETURN", "THROUGH", "DIRECTION", "BOTH", "DEPTH",
   "OUTGOING", "INCOMING", "THE", "HOW", "CHANGED", "BETWEEN",
   "DISTILL", "SUM", "AVERAGE", "AVG", "MIN", "MAX", "SPREAD", "COUNT", "GROUP",
+  "PIPE", "THEN",
+  "SHAPE", "DESCRIBE", "INDEX", "AUDITED", "VERSIONED", "DOCUMENTS", "COMPRESSION", "TTL",
+  "REQUIRED", "WEBHOOK", "WEBHOOKS", "POST", "ACTION", "TYPE", "STATS", "BONDS", "INDEXES",
 ]);
 
 function highlightCleaveQL(source: string) {
@@ -42,7 +45,7 @@ function highlightCleaveQL(source: string) {
     } else if (/^\d/.test(token)) {
       color = "text-amber-300";
     } else if (commandWords.has(token.toUpperCase())) {
-      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN", "SALVAGE", "INCINERATE", "DROP", "RESTORE", "SEVER", "BOND", "FOLLOW", "TRACE", "MATCH", "DISTILL"].includes(token.toUpperCase())
+      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN", "SALVAGE", "INCINERATE", "DROP", "RESTORE", "SEVER", "BOND", "FOLLOW", "TRACE", "MATCH", "DISTILL", "PIPE", "SHAPE", "GUARD", "INDEX", "DESCRIBE", "SHOW"].includes(token.toUpperCase())
         ? "font-semibold text-sky-400"
         : "text-violet-300";
     } else if (/^[{}\[\],.:]$/.test(token)) {
