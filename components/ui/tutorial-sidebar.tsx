@@ -106,7 +106,7 @@ export function TutorialSidebar() {
         { title: "Overview", href: "/tutorial/graph-traversal" },
         { title: "FOLLOW — explore neighbours", href: "/tutorial/graph-traversal/follow" },
         { title: "TRACE — walk a chain", href: "/tutorial/graph-traversal/trace" },
-        { title: "MATCH — Cypher-style queries", href: "/tutorial/graph-traversal/match" },
+        { title: "MATCH & VIA — Cypher & pattern queries", href: "/tutorial/graph-traversal/match" },
         { title: "Direction & depth", href: "/tutorial/graph-traversal/direction-depth" },
         { title: "Semantic pathfinding", href: "/tutorial/graph-traversal/semantic-pathfinding" },
       ],
