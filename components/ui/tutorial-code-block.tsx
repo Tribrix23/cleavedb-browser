@@ -31,6 +31,8 @@ const commandWords = new Set([
   "REWIND", "UNDO", "AGO", "YESTERDAY", "NOW",
   "MIGRATE", "HEAL", "SUGGEST",
   "LISTEN",
+  "ENRICH", "WITH", "CONCAT",
+  "PEER", "COST", "ATTENTION",
 ]);
 
 function highlightCleaveQL(source: string) {
@@ -53,7 +55,7 @@ function highlightCleaveQL(source: string) {
     } else if (/^\d/.test(token)) {
       color = "text-amber-300";
     } else if (commandWords.has(token.toUpperCase())) {
-      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN", "SALVAGE", "INCINERATE", "DROP", "RESTORE", "SEVER", "BOND", "FOLLOW", "TRACE", "MATCH", "DISTILL", "PIPE", "SHAPE", "GUARD", "INDEX", "DESCRIBE", "SHOW", "ENFORCE", "MASK", "AUTHENTICATE", "BEGIN", "COMMIT", "ROLLBACK", "EVERY", "ON", "RUN", "REWIND", "UNDO", "MIGRATE", "HEAL", "SUGGEST", "LISTEN"].includes(token.toUpperCase())
+      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN", "SALVAGE", "INCINERATE", "DROP", "RESTORE", "SEVER", "BOND", "FOLLOW", "TRACE", "MATCH", "DISTILL", "PIPE", "SHAPE", "GUARD", "INDEX", "DESCRIBE", "SHOW", "ENFORCE", "MASK", "AUTHENTICATE", "BEGIN", "COMMIT", "ROLLBACK", "EVERY", "ON", "RUN", "REWIND", "UNDO", "MIGRATE", "HEAL", "SUGGEST", "LISTEN", "ENRICH", "PEER"].includes(token.toUpperCase())
         ? "font-semibold text-sky-400"
         : "text-violet-300";
     } else if (/^[{}\[\],.:]$/.test(token)) {
