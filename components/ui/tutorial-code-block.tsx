@@ -27,6 +27,8 @@ const commandWords = new Set([
   "QUERIES", "PER", "MINUTE", "FOR", "MY", "ROLE", "BONDED", "OWNER", "REPLACE", "LEAST",
   "RECENTLY", "USED", "OLDEST", "UPDATES", "OVERWRITE", "CURRENT",
   "BEGIN", "COMMIT", "ROLLBACK", "TRANSACTION",
+  "EVERY", "SECONDS", "MINUTES", "HOURS", "DO", "ON", "RUN", "MIDNIGHT", "DAY", "AT", "CRON",
+  "REWIND", "UNDO", "AGO", "YESTERDAY", "NOW",
 ]);
 
 function highlightCleaveQL(source: string) {
@@ -49,7 +51,7 @@ function highlightCleaveQL(source: string) {
     } else if (/^\d/.test(token)) {
       color = "text-amber-300";
     } else if (commandWords.has(token.toUpperCase())) {
-      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN", "SALVAGE", "INCINERATE", "DROP", "RESTORE", "SEVER", "BOND", "FOLLOW", "TRACE", "MATCH", "DISTILL", "PIPE", "SHAPE", "GUARD", "INDEX", "DESCRIBE", "SHOW", "ENFORCE", "MASK", "AUTHENTICATE", "BEGIN", "COMMIT", "ROLLBACK"].includes(token.toUpperCase())
+      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN", "SALVAGE", "INCINERATE", "DROP", "RESTORE", "SEVER", "BOND", "FOLLOW", "TRACE", "MATCH", "DISTILL", "PIPE", "SHAPE", "GUARD", "INDEX", "DESCRIBE", "SHOW", "ENFORCE", "MASK", "AUTHENTICATE", "BEGIN", "COMMIT", "ROLLBACK", "EVERY", "ON", "RUN", "REWIND", "UNDO"].includes(token.toUpperCase())
         ? "font-semibold text-sky-400"
         : "text-violet-300";
     } else if (/^[{}\[\],.:]$/.test(token)) {
