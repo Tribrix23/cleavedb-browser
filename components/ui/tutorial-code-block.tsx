@@ -18,7 +18,7 @@ const commandWords = new Set([
   "SEVER", "MUTUAL", "CONFIDENCE", "EXCLUSIVELY", "CASCADE", "DELETE",
   "IF", "TARGET", "SOURCE", "EXPIRING", "ANY", "BOND",
   "FOLLOW", "TRACE", "MATCH", "RETURN", "THROUGH", "DIRECTION", "BOTH", "DEPTH",
-  "OUTGOING", "INCOMING", "THE",
+  "OUTGOING", "INCOMING", "THE", "HOW", "CHANGED", "BETWEEN",
 ]);
 
 function highlightCleaveQL(source: string) {
