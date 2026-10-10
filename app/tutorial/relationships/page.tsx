@@ -1,19 +1,90 @@
 import Link from "next/link";
-
 import { TutorialPageShell } from "@/components/ui/tutorial-page-shell";
 
 export default function CreatingRelationshipsOverviewPage() {
   return (
     <TutorialPageShell
-      sectionTitle="Creating Relationships (LINK) — Overview"
+      sectionTitle="Relationships & References (BOND & LINK) — Overview"
       previousHref="/tutorial/deleting-recovering/drop-restore"
       previousLabel="Drop & restore buckets"
       nextHref="/tutorial/relationships/basic-bonds"
-      nextLabel="Basic bonds"
+      nextLabel="Basic bonds (BOND)"
     >
       <p className="mb-6 leading-relaxed text-zinc-600">
-        In traditional relational databases, connecting data across different tables requires foreign keys, junction tables, and expensive multi-table <code>JOIN</code> operations. CleaveDB replaces this friction with native graph relationships known as <strong>Bonds</strong>. Using the <code>LINK</code> command, documents in any bucket can be directly connected with rich, semantically labeled edges.
+        In traditional relational databases, connecting data across different tables requires foreign keys, junction tables, and expensive multi-table <code>JOIN</code> operations. CleaveDB replaces this friction with native graph relationships and references.
       </p>
+
+      <div className="mb-8 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 className="mb-3 text-lg font-semibold text-zinc-900">Two Distinct Connection Mechanisms</h3>
+        <p className="mb-4 text-sm leading-relaxed text-zinc-600">
+          CleaveDB provides two distinct relationship mechanisms with different architectures, semantics, and storage engines:
+        </p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="rounded-lg border border-blue-100 bg-blue-50/50 p-4">
+            <h4 className="mb-1 font-semibold text-blue-950">1. Graph Bonds (<code>BOND</code>)</h4>
+            <p className="text-xs leading-relaxed text-zinc-600">
+              Rich semantic graph edges stored in <code>_bonds</code>. A bond <strong>requires an explicit relationship label</strong> via <code>AS &quot;&lt;label&gt;&quot;</code> (e.g. <code>AS &quot;friend&quot;</code>). Supports weights, conditions, TTL, mutual connections, and cascading deletes. Removed with <code>SEVER</code>.
+            </p>
+          </div>
+          <div className="rounded-lg border border-emerald-100 bg-emerald-50/50 p-4">
+            <h4 className="mb-1 font-semibold text-emerald-950">2. Document Links (<code>LINK</code>)</h4>
+            <p className="text-xs leading-relaxed text-zinc-600">
+              Direct structural document pointers or external URL references stored in <code>_links</code>. Relationship label is optional (defaults to <code>&quot;linked&quot;</code>). Can reference external web URLs (<code>https://...</code>). Cannot take graph modifiers. Removed with <code>UNLINK</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-8 overflow-x-auto rounded-lg border border-zinc-200">
+        <table className="min-w-full divide-y divide-zinc-200 text-left text-xs">
+          <thead className="bg-zinc-50 font-semibold text-zinc-900">
+            <tr>
+              <th className="px-4 py-3">Feature</th>
+              <th className="px-4 py-3 text-blue-700"><code>BOND</code> (Graph Relationship)</th>
+              <th className="px-4 py-3 text-emerald-700"><code>LINK</code> (Document / URL Reference)</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-zinc-100 bg-white text-zinc-600">
+            <tr>
+              <td className="px-4 py-2.5 font-medium text-zinc-900">Primary Purpose</td>
+              <td className="px-4 py-2.5">Semantic graph relationships with meaning (edges)</td>
+              <td className="px-4 py-2.5">Direct document / external URL references</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2.5 font-medium text-zinc-900">Relationship Label</td>
+              <td className="px-4 py-2.5 font-semibold text-blue-800">Required via <code>AS &quot;&lt;label&gt;&quot;</code></td>
+              <td className="px-4 py-2.5 text-emerald-800">Optional (defaults to <code>&quot;linked&quot;</code>)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2.5 font-medium text-zinc-900">Internal Storage</td>
+              <td className="px-4 py-2.5 font-mono text-zinc-700">_bonds</td>
+              <td className="px-4 py-2.5 font-mono text-zinc-700">_links</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2.5 font-medium text-zinc-900">External Web URLs</td>
+              <td className="px-4 py-2.5 text-zinc-400">No (internal documents only)</td>
+              <td className="px-4 py-2.5 text-emerald-700 font-medium">Yes (<code>https://...</code>)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2.5 font-medium text-zinc-900">Weights &amp; Modifiers</td>
+              <td className="px-4 py-2.5 text-zinc-800"><code>WITH</code>, <code>IF</code>, <code>EXPIRING</code>, <code>EXCLUSIVELY</code></td>
+              <td className="px-4 py-2.5 text-zinc-400">No (rejected by parser)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-2.5 font-medium text-zinc-900">Removal Command</td>
+              <td className="px-4 py-2.5 font-mono text-rose-600">SEVER &lt;doc1&gt; FROM &lt;doc2&gt;</td>
+              <td className="px-4 py-2.5 font-mono text-rose-600">UNLINK &lt;doc1&gt; FROM &lt;doc2&gt;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside className="mb-6 rounded-lg border border-amber-200 bg-amber-50/70 p-5 leading-relaxed text-zinc-700">
+        <h3 className="mb-1 font-semibold text-amber-950">Strict Existence Validation</h3>
+        <p className="text-sm text-amber-900/90">
+          CleaveDB validates that both source and target documents exist before creating bonds or links (external URLs are validated as URLs). Creating ghost edges on non-existent buckets or documents is strictly rejected.
+        </p>
+      </aside>
 
       <aside className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-5 leading-relaxed text-zinc-700">
         <h3 className="mb-1 font-semibold text-zinc-900">Zero-cost relationship traversals</h3>
@@ -22,42 +93,19 @@ export default function CreatingRelationshipsOverviewPage() {
         </p>
       </aside>
 
-      <p className="mb-6 leading-relaxed text-zinc-600">
-        Bonds in CleaveDB are far more capable than standard graph edges. Rather than being mere static links, bonds are richly configurable objects with functional attributes:
-      </p>
-      <ul className="mb-6 list-disc space-y-2 pl-6 leading-relaxed text-zinc-600">
-        <li>
-          <strong className="text-zinc-800">Directionality &amp; Mutuality:</strong> Create one-way directed edges or symmetric bidirectional bonds with a single statement.
-        </li>
-        <li>
-          <strong className="text-zinc-800">Conditional Activation:</strong> Define dormant edges that activate only when source or target document attributes satisfy specific criteria.
-        </li>
-        <li>
-          <strong className="text-zinc-800">Lifecycle &amp; TTL:</strong> Assign time-to-live expirations that automatically sever temporary access or guest relationships.
-        </li>
-        <li>
-          <strong className="text-zinc-800">Exclusivity:</strong> Guarantee single active assignments (such as primary account owner or active subscription tier).
-        </li>
-        <li>
-          <strong className="text-zinc-800">Weights &amp; Confidence:</strong> Attach floating-point weights (0.0 to 1.0) for recommendation engines, affinity graphs, and neuro-symbolic search.
-        </li>
-      </ul>
-
-      <aside className="mb-8 rounded-lg border border-blue-100 bg-blue-50/70 p-5 leading-relaxed text-zinc-700">
-        <h3 className="mb-2 font-semibold text-zinc-900">SQL perspective</h3>
-        <p>
-          In SQL, connecting a user to an organization requires defining foreign keys or an intermediary <code>user_organizations</code> table, and reading it requires <code>SELECT ... FROM users JOIN user_organizations ON ... JOIN organizations ON ...</code>. In CleaveQL, <code>LINK &quot;users:jane&quot; TO &quot;orgs:acme&quot; AS &quot;member&quot;</code> stores the connection natively, and <code>FIND &quot;member&quot; OF &quot;users:jane&quot;</code> retrieves it instantly.
-        </p>
-      </aside>
-
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Explore the LINK relationship topics</h3>
+      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Explore the relationship &amp; reference topics</h3>
       <p className="mb-4 leading-relaxed text-zinc-600">
-        Each lesson provides practical CleaveQL examples covering the complete relationship toolkit:
+        Each lesson provides practical CleaveQL examples covering the complete relationship and reference toolkit:
       </p>
       <ul className="list-disc space-y-2 pl-6 leading-relaxed text-blue-700">
         <li>
           <Link className="hover:underline" href="/tutorial/relationships/basic-bonds">
-            Basic bonds: connect two documents with directed semantic labels.
+            Basic bonds (BOND): connect documents with required directed semantic labels.
+          </Link>
+        </li>
+        <li>
+          <Link className="hover:underline" href="/tutorial/relationships/document-links">
+            Document &amp; URL links (LINK): lightweight document references and external web URLs.
           </Link>
         </li>
         <li>
@@ -92,7 +140,7 @@ export default function CreatingRelationshipsOverviewPage() {
         </li>
         <li>
           <Link className="hover:underline" href="/tutorial/relationships/sever">
-            Removing bonds (SEVER): disconnect specific labeled edges or unlink documents completely.
+            Removing relationships (SEVER &amp; UNLINK): dedicated removal commands and healing.
           </Link>
         </li>
       </ul>

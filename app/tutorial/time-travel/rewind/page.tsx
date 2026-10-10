@@ -79,7 +79,7 @@ FIND staff "a"`}</TutorialCodeBlock>
       <p className="mb-4 leading-relaxed text-zinc-600">
         Unlike relational cascades that break foreign keys, CleaveDB graph bonds are decoupled from document revisions. Rewinding a document modifies its internal attributes without severing incoming or outgoing bonds:
       </p>
-      <TutorialCodeBlock label="Bonds persist through document rewinds">{`LINK "staff:a" TO "staff:b" AS "pal"
+      <TutorialCodeBlock label="Bonds persist through document rewinds">{`BOND "staff:a" TO "staff:b" AS "pal"
 CHANGE staff "a" SET age TO 50
 REWIND "staff:a" TO "now"
 

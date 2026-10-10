@@ -64,10 +64,10 @@ export default function EdgeDirectionsPage() {
 
       <h3 className="mb-3 text-lg font-semibold text-zinc-900">3. Mutual / Undirected bonds (WITH)</h3>
       <p className="mb-4 leading-relaxed text-zinc-600">
-        When documents are connected with mutual bonds (e.g., <code>LINK &quot;staff:ana&quot; AND &quot;staff:eve&quot; AS MUTUAL &quot;peer&quot;</code>), use <code>WITH</code> to match in both directions:
+        When documents are connected with mutual bonds (e.g., <code>BOND &quot;staff:ana&quot; AND &quot;staff:eve&quot; AS MUTUAL &quot;peer&quot;</code>), use <code>WITH</code> to match in both directions:
       </p>
       <TutorialCodeBlock label="Undirected pattern with mutual bonds">{`-- Setup mutual bond:
-LINK "staff:ana" AND "staff:eve" AS MUTUAL "peer"
+BOND "staff:ana" AND "staff:eve" AS MUTUAL "peer"
 
 -- Query both orientations:
 FIND PATTERN staff AS x LINKED VIA "peer" WITH staff AS y`}</TutorialCodeBlock>

@@ -31,7 +31,12 @@ export default function HealRepairIntegrityPage() {
             <tr>
               <td className="px-4 py-3 font-medium text-zinc-900">Bonds only</td>
               <td className="px-4 py-3 font-mono text-blue-600">HEAL BONDS</td>
-              <td className="px-4 py-3">Removes bonds whose source or target document no longer exists</td>
+              <td className="px-4 py-3">Removes bonds whose source or target document no longer exists in _bonds</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-medium text-zinc-900">Links only</td>
+              <td className="px-4 py-3 font-mono text-emerald-600">HEAL LINKS</td>
+              <td className="px-4 py-3">Removes links whose source or target document no longer exists in _links</td>
             </tr>
             <tr>
               <td className="px-4 py-3 font-medium text-zinc-900">Secondary indexes</td>
@@ -40,8 +45,8 @@ export default function HealRepairIntegrityPage() {
             </tr>
             <tr>
               <td className="px-4 py-3 font-medium text-zinc-900">Full system repair</td>
-              <td className="px-4 py-3 font-mono text-blue-600">HEAL ALL</td>
-              <td className="px-4 py-3">Heals bonds, rebuilds indexes, and fixes structural inconsistencies</td>
+              <td className="px-4 py-3 font-mono text-purple-600">HEAL ALL</td>
+              <td className="px-4 py-3">Heals bonds, links, secondary indexes, and structural inconsistencies</td>
             </tr>
           </tbody>
         </table>

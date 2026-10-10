@@ -83,19 +83,20 @@ export function TutorialSidebar() {
       ],
     },
     {
-      title: "Creating Relationships (LINK)",
+      title: "Relationships & References (BOND & LINK)",
       isOpen: false,
       href: "/tutorial/relationships",
       sections: [
         { title: "Overview", href: "/tutorial/relationships" },
-        { title: "Basic bonds", href: "/tutorial/relationships/basic-bonds" },
+        { title: "Basic bonds (BOND)", href: "/tutorial/relationships/basic-bonds" },
+        { title: "Document & URL links (LINK)", href: "/tutorial/relationships/document-links" },
         { title: "Mutual bonds", href: "/tutorial/relationships/mutual-bonds" },
         { title: "Conditional bonds", href: "/tutorial/relationships/conditional-bonds" },
         { title: "Expiring bonds", href: "/tutorial/relationships/expiring-bonds" },
         { title: "Exclusive bonds", href: "/tutorial/relationships/exclusive-bonds" },
         { title: "Cascade on delete", href: "/tutorial/relationships/cascade" },
         { title: "Confidence & affinity", href: "/tutorial/relationships/confidence-affinity" },
-        { title: "Removing bonds (SEVER)", href: "/tutorial/relationships/sever" },
+        { title: "Removing relationships (SEVER & UNLINK)", href: "/tutorial/relationships/sever" },
       ],
     },
     {

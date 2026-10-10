@@ -8,7 +8,7 @@ export default function DropRestoreBucketsPage() {
       previousHref="/tutorial/deleting-recovering/incinerate"
       previousLabel="Hard delete (INCINERATE)"
       nextHref="/tutorial/relationships"
-      nextLabel="Creating Relationships (LINK)"
+      nextLabel="Relationships & references (BOND & LINK)"
     >
       <p className="mb-6 leading-relaxed text-zinc-600">
         In addition to managing individual records, CleaveDB provides bucket-level lifecycle commands. When decommissioning a service, archiving historical datasets, or migrating between environments, you can take entire buckets offline and restore them when needed.

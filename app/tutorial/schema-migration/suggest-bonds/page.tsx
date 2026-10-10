@@ -84,15 +84,15 @@ export default function SuggestBondsPage() {
         </table>
       </div>
 
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Review &amp; link workflow</h3>
+      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Review &amp; bond workflow</h3>
       <p className="mb-4 leading-relaxed text-zinc-600">
-        Accepting a suggestion is as simple as creating the bond with <code>LINK</code>:
+        Accepting a suggestion is as simple as creating the bond with <code>BOND</code>:
       </p>
       <TutorialCodeBlock label="Interactive suggestion lifecycle">{`-- 1. Inspect what relationships are missing
 SUGGEST BONDS
 
 -- 2. Accept a high-confidence recommendation
-LINK "logs:l1" TO "staff:a" AS "by"
+BOND "logs:l1" TO "staff:a" AS "by"
 
 -- 3. Verify suggestion is dismissed
 SUGGEST BONDS
@@ -109,7 +109,7 @@ FIND "by" OF "logs:l1"`}</TutorialCodeBlock>
           You can inspect, establish, and verify bonds in a single command string:
         </p>
         <code className="mt-2 block text-xs font-semibold text-blue-900">
-          SUGGEST BONDS LINK &quot;logs:l1&quot; TO &quot;staff:b&quot; AS &quot;seen&quot; SUGGEST BONDS
+          SUGGEST BONDS BOND &quot;logs:l1&quot; TO &quot;staff:b&quot; AS &quot;seen&quot; SUGGEST BONDS
         </code>
       </aside>
     </TutorialPageShell>

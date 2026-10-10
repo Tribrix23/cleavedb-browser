@@ -19,7 +19,7 @@ export default function CrossBucketPatternsPage() {
         Consider a relationship between staff members and geographic places:
       </p>
       <TutorialCodeBlock label="Cross-bucket bond and pattern">{`-- Bond staff member to a location:
-LINK "staff:ana" TO "places:mnl" AS "lives_in"
+BOND "staff:ana" TO "places:mnl" AS "lives_in"
 
 -- Query across buckets:
 FIND PATTERN staff AS s LINKED VIA "lives_in" TO places AS p`}</TutorialCodeBlock>

@@ -29,7 +29,7 @@ export default function ScatterWritesPage() {
       </p>
       <TutorialCodeBlock label="Scatter update statement">{`SCATTER CHANGE products "item_42" SET price TO 89.95`}</TutorialCodeBlock>
       <div className="my-4">
-        <TutorialCodeBlock label="Scatter relationship linking">{`SCATTER LINK "users:1" TO "products:item_42" AS "purchased"`}</TutorialCodeBlock>
+        <TutorialCodeBlock label="Scatter relationship bonding">{`SCATTER BOND "users:1" TO "products:item_42" AS "purchased"`}</TutorialCodeBlock>
       </div>
       <p className="mb-8 leading-relaxed text-zinc-600">
         All shards apply the modification simultaneously, keeping read replicas and edge graph indexes synchronized.

@@ -19,8 +19,8 @@ export default function BondHistoryPage() {
         The <code>FIND HOW THE &quot;label&quot; OF &quot;document_id&quot; CHANGED BETWEEN &quot;start&quot; AND &quot;end&quot;</code> command inspects historical mutations for a specific document and relationship type:
       </p>
       <TutorialCodeBlock label="Inspect bond creation history">{`-- Create management bonds:
-LINK "staff:ana" TO "staff:bob" AS "manages"
-LINK "staff:ana" TO "staff:cam" AS "manages"
+BOND "staff:ana" TO "staff:bob" AS "manages"
+BOND "staff:ana" TO "staff:cam" AS "manages"
 
 -- Inspect how Ana's "manages" relationships changed:
 FIND HOW THE "manages" OF "staff:ana" CHANGED BETWEEN "yesterday" AND "tomorrow"`}</TutorialCodeBlock>
@@ -28,8 +28,8 @@ FIND HOW THE "manages" OF "staff:ana" CHANGED BETWEEN "yesterday" AND "tomorrow"
         CleaveDB returns the sequence of relationship events recorded in the timeline:
       </p>
       <TutorialCodeBlock label="Result payload">{`[
-  { "action": "LINK", "target": "staff:bob" },
-  { "action": "LINK", "target": "staff:cam" }
+  { "action": "BOND", "target": "staff:bob" },
+  { "action": "BOND", "target": "staff:cam" }
 ]`}</TutorialCodeBlock>
 
       <h3 className="mb-3 text-lg font-semibold text-zinc-900">Tracking bond deletions (SEVER)</h3>

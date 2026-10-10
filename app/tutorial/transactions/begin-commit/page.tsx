@@ -37,9 +37,9 @@ COMMIT`}</TutorialCodeBlock>
 
       <h3 className="mb-3 text-lg font-semibold text-zinc-900">Mixing documents, bonds, and updates</h3>
       <p className="mb-4 leading-relaxed text-zinc-600">
-        A single transaction can compose document creation (<code>POUR</code>), relationship creation (<code>LINK</code>), and document mutations (<code>CHANGE</code>):
+        A single transaction can compose document creation (<code>POUR</code>), graph bond creation (<code>BOND</code>), and document mutations (<code>CHANGE</code>):
       </p>
-      <TutorialCodeBlock label="Composite multi-paradigm transaction">{`BEGIN POUR INTO mix "m3" {"v": 3} LINK "mix:m3" TO "mix:m1" AS "tx" CHANGE mix "m3" SET v TO 4 COMMIT`}</TutorialCodeBlock>
+      <TutorialCodeBlock label="Composite multi-paradigm transaction">{`BEGIN POUR INTO mix "m3" {"v": 3} BOND "mix:m3" TO "mix:m1" AS "tx" CHANGE mix "m3" SET v TO 4 COMMIT`}</TutorialCodeBlock>
       <p className="mb-8 leading-relaxed text-zinc-600">
         The document creation, graph bond establishment, and field update all commit in unison.
       </p>
