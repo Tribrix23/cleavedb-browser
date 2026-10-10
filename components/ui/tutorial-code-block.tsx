@@ -13,7 +13,7 @@ const commandWords = new Set([
   "LAST", "HIGHEST", "LOWEST", "GROUPED", "BY", "ARRANGED", "GOING", "UP",
   "DOWN", "SORTED", "ORDER", "ASC", "DESC", "LIMIT", "MENTIONING", "MEANING",
   "MATCHING", "INCLUDE", "CANDIDATE", "RELATED", "OF", "AS", "IN", "PATTERN",
-  "LINKED", "VIA", "TO", "GUIDED", "THRESHOLD", "SET",
+  "LINKED", "VIA", "TO", "GUIDED", "THRESHOLD", "SET", "UPDATE",
 ]);
 
 function highlightCleaveQL(source: string) {
@@ -36,7 +36,7 @@ function highlightCleaveQL(source: string) {
     } else if (/^\d/.test(token)) {
       color = "text-amber-300";
     } else if (commandWords.has(token.toUpperCase())) {
-      color = ["POUR", "FIND", "SCOOP", "CHANGE", "LINK", "DRAIN"].includes(token.toUpperCase())
+      color = ["POUR", "FIND", "SCOOP", "CHANGE", "UPDATE", "LINK", "DRAIN"].includes(token.toUpperCase())
         ? "font-semibold text-sky-400"
         : "text-violet-300";
     } else if (/^[{}\[\],.:]$/.test(token)) {

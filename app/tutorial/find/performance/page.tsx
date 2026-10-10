@@ -8,7 +8,7 @@ export default function FindPerformancePage() {
       previousHref="/tutorial/find/historical-reads"
       previousLabel="Historical graph reads"
       nextHref="/tutorial/updating-documents"
-      nextLabel="Updating Documents (CHANGE)"
+      nextLabel="Updating Documents"
     >
       <p className="mb-6 leading-relaxed text-zinc-600">
         Graph traversal and vector search do more than scan structured fields, so they have different performance characteristics. A graph query spends work resolving connected paths; a semantic query spends compute comparing vectors. Knowing where that work happens helps you write queries that stay focused and set sensible expectations for newly written documents.

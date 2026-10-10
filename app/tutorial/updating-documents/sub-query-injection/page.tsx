@@ -7,8 +7,8 @@ export default function SubQueryInjectionPage() {
       sectionTitle="Sub-query Injection"
       previousHref="/tutorial/updating-documents/multiple-fields"
       previousLabel="Updating multiple fields"
-      nextHref="/tutorial/deleting-recovering"
-      nextLabel="Deleting & Recovering"
+      nextHref="/tutorial/updating-documents/update"
+      nextLabel="The UPDATE"
     >
       <p className="mb-6 leading-relaxed text-zinc-600">
         In real-world applications, the documents you want to update—or the values you want to assign to them—often depend on data located in another bucket. CleaveQL allows you to embed <code>SCOOP</code> queries directly inside a <code>CHANGE</code> statement, eliminating the need to write multi-step orchestration logic in your application layer.

@@ -59,7 +59,7 @@ export function TutorialSidebar() {
       ],
     },
     {
-      title: "Updating Documents (CHANGE)",
+      title: "Updating Documents",
       isOpen: false,
       href: "/tutorial/updating-documents",
       sections: [
@@ -67,6 +67,7 @@ export function TutorialSidebar() {
         { title: "Updating single fields", href: "/tutorial/updating-documents/single-fields" },
         { title: "Updating multiple fields", href: "/tutorial/updating-documents/multiple-fields" },
         { title: "Sub-query injection", href: "/tutorial/updating-documents/sub-query-injection" },
+        { title: "The UPDATE", href: "/tutorial/updating-documents/update" },
       ],
     },
     {
