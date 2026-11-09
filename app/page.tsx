@@ -36,7 +36,7 @@ export default function Home() {
               <Link className={styles.primaryButton} href="/docs/installation">Start building <ArrowRight size={18} aria-hidden="true" /></Link>
               <Link className={styles.textButton} href="/docs">Explore the docs <ArrowUpRight size={18} aria-hidden="true" /></Link>
             </div>
-            <div className="mt-6 sm:mt-8 mb-6 max-w-sm w-full">
+            <div className="mt-6 sm:mt-8  mb-6 max-w-sm w-full">
               <CopyCommand command="npm i cleavedb" />
             </div>
             <a href="#product" className={styles.discoverLink}><ArrowDown size={14} aria-hidden="true" /> A little less complexity. A lot more possibility.</a>

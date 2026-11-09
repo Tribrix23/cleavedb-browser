@@ -14,7 +14,7 @@ export default function PeerAttentionPage() {
         CleaveDB integrates native Transformer attention layers directly into its hybrid document-graph engine. The <strong><code>PEER INTO ATTENTION</code></strong> diagnostic command inspects the operational health, hardware acceleration, execution providers, and tensor dimensions of the integrated Semantic Relevance Attention (SRA) subsystem.
       </p>
 
-      <h3 className="mb-3 text-lg font-semibold text-zinc-900">Syntax and command</h3>
+      <h3 className="mb-3 text-lg font-semibold  text-zinc-900">Syntax and command</h3>
       <p className="mb-4 leading-relaxed text-zinc-600">
         Run the standalone diagnostic statement in any CleaveQL session:
       </p>

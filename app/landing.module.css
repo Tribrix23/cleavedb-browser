@@ -28,7 +28,7 @@
 .navCta:hover, .primaryButton:hover { background: #303b36; transform: translateY(-2px); }
 .menuToggle { display: none; align-items: center; justify-content: center; height: 42px; width: 42px; border: 1px solid var(--line); border-radius: 6px; background: transparent; }
 .hero { display: grid; grid-template-columns: 58% 42%; min-height: 560px; align-items: center; position: relative; padding-block: 60px 55px; }
-.heroCopy { position: relative; z-index: 2; }
+url('../components.json').heroCopy { position: relative; z-index: 2; }
 .hero h1 { margin: 0; font-size: clamp(60px, 6.35vw, 92px); line-height: 1.02; font-weight: 570; letter-spacing: -.04em; }
 .headlineLine { white-space: nowrap; }
 .hero h1 em { font-size: 1.13em; line-height: .95; letter-spacing: -.04em; }
@@ -248,4 +248,3 @@
   .landing *, .landing *::before, .landing *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .sculptureTilt { transform: none !important; }
 }
-

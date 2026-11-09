@@ -11,7 +11,7 @@ export default function DocsInstallationPage() {
         CleaveDB is built for extreme performance using hardware-accelerated memory access and vector search. You can choose to run the pre-compiled standalone binary (recommended for most users) or compile the core engine from source out of Rust and C++ SIMD.
       </p>
 
-      <div className="bg-zinc-50 border border-zinc-200/60 rounded-2xl p-8 mb-16">
+      <div className="bg-zinc-50 border border-zinc-200/60 rounded-2xl p-8 mb-16 ">
         <div className="flex items-center gap-3 mb-6">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold text-sm">A</div>
           <h2 className="text-2xl font-semibold text-zinc-900 tracking-tight">Download Pre-Compiled Binary (Recommended)</h2>
@@ -20,7 +20,7 @@ export default function DocsInstallationPage() {
           You do <strong>not</strong> need to install Python, Rust, or C++ build tools. We provide a single, self-contained executable that has the hardware-accelerated C++ AVX-512 extensions and Rust engine fully baked in.
         </p>
         
-        <ol className="list-decimal list-inside space-y-4 text-zinc-600 mb-8 ml-2">
+        <ol className="list-decimal list-inside space-y-4 text-zinc-600 mb-8 ml-2 ">
           <li>Go to the <a href="https://github.com/Tribrix23/CleaveDB/releases" className="text-blue-600 hover:underline font-medium">Releases</a> page on GitHub.</li>
           <li>Download <code className="bg-zinc-200 px-1.5 py-0.5 rounded text-sm text-zinc-800">CleaveShell.exe</code> (or the equivalent binary for your OS).</li>
           <li>Double-click the executable to instantly start the database server and interactive shell.</li>
