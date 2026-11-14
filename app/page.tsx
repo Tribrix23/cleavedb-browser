@@ -55,7 +55,7 @@ export default function Home() {
           <div className={styles.sectionHeading}>
             <h2 id="product-title">One home for every<br />dimension of your data.</h2>
             <p>Flexible like documents. Connected like a graph. Thoughtful enough to search by meaning. It all comes together in CleaveDB.</p>
-          </div>
+          </div>s
           <QueryPlayground />
           <div className={styles.productFootnote}><span><Braces size={16} aria-hidden="true" /> Real CleaveQL syntax. Illustrative data.</span><Link href="/docs/core-concepts/cleaveql">Meet your new query language <ArrowRight size={16} aria-hidden="true" /></Link></div>
         </section>
