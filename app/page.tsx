@@ -39,6 +39,7 @@ export default function Home() {
             <div className="mt-6 sm:mt-8  mb-6 max-w-sm w-full">
               <CopyCommand command="npm i cleavedb" />
             </div>
+            
             <a href="#product" className={styles.discoverLink}><ArrowDown size={14} aria-hidden="true" /> A little less complexity. A lot more possibility.</a>
           </div>
           <DatabaseSculpture />

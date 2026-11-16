@@ -38,6 +38,7 @@ export function MatrixRain({ color = "#4D3CF7", className }: MatrixRainProps) {
       ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
       ctx.fillRect(0, 0, width, height);
 
+
       ctx.fillStyle = color;
       ctx.font = `${fontSize}px monospace`;
 
@@ -63,6 +64,7 @@ export function MatrixRain({ color = "#4D3CF7", className }: MatrixRainProps) {
         drops[i]++;
       }
     };
+    
 
     let animationFrameId: number;
     // Use setTimeout to control framerate (approx 30fps)

@@ -42,6 +42,7 @@ export function TutorialPageShell({
           </Link>
         </div>
       </header>
+      
 
       <div className="relative mx-auto flex max-w-7xl flex-col gap-16 px-6 py-12 md:flex-row">
         <TutorialSidebar />
@@ -54,6 +55,7 @@ export function TutorialPageShell({
             <h1 className="mb-6 text-4xl font-bold tracking-tight text-zinc-900">Tutorial: Building with CleaveDB</h1>
             <h2 className="mb-6 text-2xl font-semibold tracking-tight text-zinc-900">{sectionTitle}</h2>
             {children}
+
 
             {(previousHref || nextHref) && (
               <nav className="mt-12 flex flex-col gap-4 border-t border-zinc-100 pt-6 sm:flex-row sm:items-center sm:justify-between">

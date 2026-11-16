@@ -63,6 +63,7 @@ function highlightCleaveQL(source: string) {
     } else if (/^[{}\[\],.:]$/.test(token)) {
       color = "text-zinc-500";
     }
+    
 
     tokens.push(<span className={color} key={`${start}-${token}`}>{token}</span>);
     cursor = start + token.length;
@@ -81,6 +82,7 @@ export function TutorialCodeBlock({ label, children }: TutorialCodeBlockProps) {
         <span className="text-sm font-semibold tracking-wide text-zinc-100">CleaveQL</span>
         <span className="text-xs font-medium tracking-wide text-zinc-400">Example · {label}</span>
       </div>
+      
       <pre className="overflow-x-auto px-5 py-5 font-mono text-sm leading-7 text-zinc-100">
         <code>{highlightCleaveQL(source)}</code>
       </pre>

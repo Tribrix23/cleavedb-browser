@@ -12,6 +12,7 @@ type AccordionItem = {
   sections?: { title: string; href: string }[];
 };
 
+
 export function TutorialSidebar() {
   const pathname = usePathname();
   
@@ -294,6 +295,7 @@ export function TutorialSidebar() {
       )
     );
   };
+
 
   return (
     <aside className="w-full md:w-72 shrink-0">
