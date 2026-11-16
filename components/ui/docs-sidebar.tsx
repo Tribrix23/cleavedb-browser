@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+
 export function DocsSidebar() {
   const pathname = usePathname();
 

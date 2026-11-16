@@ -22,6 +22,7 @@ const infrastructure = [
   { icon: ShieldCheck, title: "Boundaries built into the database.", body: "Authentication, tenant isolation, and granular document-level security keep access rules close to your data.", href: "/docs/core-concepts/security", link: "Understand security" },
 ];
 
+
 export default function Home() {
   return (
     <div className={`${styles.landing} ${editorial.variable}`}>

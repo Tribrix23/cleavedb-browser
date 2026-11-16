@@ -5,6 +5,7 @@ type TutorialCodeBlockProps = {
   children: React.ReactNode;
 };
 
+
 const commandWords = new Set([
   "POUR", "FIND", "SCOOP", "CHANGE", "LINK", "DRAIN", "SHOW", "YIELD",
   "EXPIRES", "SECONDS", "MINUTES", "HOURS", "DAYS", "MANY", "INTO", "RANDOM",

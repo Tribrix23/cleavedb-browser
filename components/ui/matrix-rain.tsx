@@ -8,6 +8,7 @@ interface MatrixRainProps {
   className?: string;
 }
 
+
 export function MatrixRain({ color = "#4D3CF7", className }: MatrixRainProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
